@@ -1,0 +1,99 @@
+{
+  "_embedded": {
+    "events": [
+      {
+        "name": "Aurora Lights World Tour",
+        "type": "event",
+        "id": "vvFAKE0001",
+        "url": "https://www.ticketmaster.com/event/vvFAKE0001",
+        "images": [
+          { "ratio": "16_9", "url": "https://example.test/img/a-305.jpg", "width": 305, "height": 172 },
+          { "ratio": "16_9", "url": "https://example.test/img/a-640.jpg", "width": 640, "height": 360 },
+          { "ratio": "16_9", "url": "https://example.test/img/a-2048.jpg", "width": 2048, "height": 1152 },
+          { "ratio": "3_2", "url": "https://example.test/img/a-3x2.jpg", "width": 640, "height": 427 }
+        ],
+        "sales": {
+          "public": { "startDateTime": "2026-08-01T17:00:00Z", "startTBD": false, "endDateTime": "2026-12-06T02:00:00Z" }
+        },
+        "dates": {
+          "start": { "localDate": "2026-12-05", "localTime": "19:30:00", "dateTime": "2026-12-06T03:30:00Z", "dateTBD": false, "dateTBA": false, "timeTBA": false },
+          "timezone": "America/Los_Angeles",
+          "status": { "code": "onsale" }
+        },
+        "classifications": [
+          { "primary": true, "segment": { "id": "KZFzniwnSyZfZ7v7nJ", "name": "Music" } }
+        ],
+        "priceRanges": [
+          { "type": "standard", "currency": "USD", "min": 72.0, "max": 210.0 },
+          { "type": "standard including fees", "currency": "USD", "min": 89.5, "max": 250.0 }
+        ],
+        "_embedded": {
+          "venues": [
+            {
+              "name": "Example Arena",
+              "city": { "name": "Los Angeles" },
+              "state": { "name": "California", "stateCode": "CA" },
+              "country": { "name": "United States Of America", "countryCode": "US" }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Aurora Lights World Tour - Late Show",
+        "type": "event",
+        "id": "vvFAKE0002",
+        "url": "https://www.ticketmaster.com/event/vvFAKE0002",
+        "sales": {
+          "public": { "startDateTime": "2026-08-01T17:00:00Z", "startTBD": false }
+        },
+        "dates": {
+          "start": { "localDate": "2026-12-06", "localTime": "21:00:00", "dateTime": "2026-12-07T05:00:00Z" },
+          "timezone": "America/Los_Angeles",
+          "status": { "code": "onsale" }
+        },
+        "classifications": [
+          { "primary": true, "segment": { "id": "KZFzniwnSyZfZ7v7nJ", "name": "Music" } }
+        ],
+        "priceRanges": [
+          { "type": "standard", "currency": "USD", "min": 65.0, "max": 180.0 }
+        ],
+        "_embedded": {
+          "venues": [
+            { "name": "Example Arena", "city": { "name": "Los Angeles" }, "state": { "stateCode": "CA" }, "country": { "countryCode": "US" } }
+          ]
+        }
+      },
+      {
+        "name": "Aurora Lights World Tour - Added Date",
+        "type": "event",
+        "id": "vvFAKE0003",
+        "url": "https://www.ticketmaster.com/event/vvFAKE0003",
+        "sales": {
+          "public": { "startDateTime": "2026-11-01T17:00:00Z", "startTBD": false },
+          "presales": [
+            { "name": "Fan Club Presale", "startDateTime": "2026-10-28T17:00:00Z", "endDateTime": "2026-10-30T03:00:00Z" }
+          ]
+        },
+        "dates": {
+          "start": { "localDate": "2026-12-12", "dateTBA": false, "timeTBA": true },
+          "timezone": "America/Chicago",
+          "status": { "code": "offsale" }
+        },
+        "classifications": [
+          { "primary": true, "segment": { "id": "KZFzniwnSyZfZ7v7nJ", "name": "Music" } }
+        ]
+      },
+      {
+        "name": "Aurora Lights - Cancelled Night",
+        "type": "event",
+        "id": "vvFAKE0004",
+        "url": "https://www.ticketmaster.com/event/vvFAKE0004",
+        "dates": {
+          "start": { "localDate": "2026-11-20", "localTime": "20:00:00" },
+          "status": { "code": "cancelled" }
+        }
+      }
+    ]
+  },
+  "page": { "size": 20, "totalElements": 4, "totalPages": 1, "number": 0 }
+}

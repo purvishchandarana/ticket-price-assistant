@@ -1,0 +1,35 @@
+{
+  "name": "ticket-price-assistant",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Human-in-the-loop ticket price comparison and booking assistant for the Indian market",
+  "keywords": [
+    "tickets",
+    "price-comparison",
+    "india",
+    "gst",
+    "playwright",
+    "human-in-the-loop"
+  ],
+  "license": "MIT",
+  "author": "Purvish Chandarana (https://github.com/purvishchandarana)",
+  "homepage": "https://github.com/purvishchandarana/ticket-price-assistant#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/purvishchandarana/ticket-price-assistant.git"
+  },
+  "bugs": {
+    "url": "https://github.com/purvishchandarana/ticket-price-assistant/issues"
+  },
+  "workspaces": [
+    "server"
+  ],
+  "engines": {
+    "node": ">=22.9"
+  },
+  "scripts": {
+    "dev:server": "npm run dev -w server",
+    "start": "npm start -w server",
+    "test": "npm test -w server"
+  }
+}
