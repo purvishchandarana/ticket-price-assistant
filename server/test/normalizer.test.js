@@ -90,6 +90,26 @@ describe('normalizePrice', () => {
     }
   });
 
+  it('prices multi-admit tiers per unit and reports per-person cost', () => {
+    const q = normalizePrice({ currency: 'INR', base: 899, admits: 2, includesFees: true, includesTaxes: true }, { qty: 3 });
+    assert.equal(q.units, 2); // 3 people need two "Entry for 2" units
+    assert.equal(q.total, 1798);
+    assert.equal(q.perTicket, 599.33);
+  });
+
+  it('uses reported fee percentages and tax rates', () => {
+    const q = normalizePrice({ currency: 'INR', base: 1000, feePct: 0.05, taxRate: 0.18, feeTaxRate: 0.18 }, { qty: 2 });
+    assert.equal(q.fees, 100);
+    assert.equal(q.taxes, 378); // 18% of 2000 + 18% of 100
+    assert.equal(q.total, 2478);
+    assert.equal(q.confidence, 'high');
+  });
+
+  it('prepends provider notes', () => {
+    const q = normalizePrice({ currency: 'INR', base: 10, includesFees: true, includesTaxes: true, notes: ['From tier X.'] });
+    assert.deepEqual(q.notes, ['From tier X.']);
+  });
+
   it('rejects invalid quantities', () => {
     for (const qty of [0, -1, 1.5, NaN]) {
       assert.throws(() => normalizePrice({ currency: 'USD', base: 10 }, { qty }), RangeError);

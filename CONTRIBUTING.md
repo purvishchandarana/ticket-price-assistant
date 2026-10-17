@@ -17,11 +17,12 @@ Thanks for your interest in improving Ticket Price Assistant!
 ```bash
 npm install
 cp .env.example .env
-npm run dev:server
+npm run dev      # API :3001, UI :5173, demo site :4100
 npm test
+npm run build    # production UI build
 ```
 
-Requires Node.js 22.9 or newer.
+Requires Node.js 22.13 or newer.
 
 ## Making a change
 

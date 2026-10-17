@@ -3,12 +3,13 @@
  * Provider and registering it in registry.js.
  *
  * @typedef {object} SearchQuery
- * @property {'concerts'|'sports'|'theatre'} category
+ * @property {'concerts'|'comedy'|'sports'|'theatre'} category
  * @property {string} keyword
  * @property {number} qty            tickets wanted (1..MAX_QTY)
+ * @property {string} [city]         optional city filter
  *
  * @typedef {object} OnSaleInfo
- * @property {'onsale'|'scheduled'|'offsale'|'cancelled'|'postponed'|'rescheduled'|'unknown'} status
+ * @property {'onsale'|'scheduled'|'offsale'|'soldout'|'cancelled'|'postponed'|'rescheduled'|'unknown'} status
  * @property {string|null} rawStatus           source's own status code
  * @property {string|null} publicStart         ISO datetime general sale opens
  * @property {string|null} publicEnd

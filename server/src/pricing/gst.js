@@ -23,7 +23,7 @@ export function inferTaxClass({ category, name = '' }) {
   if (category === 'sports') {
     return PREMIUM_LEAGUE_PATTERN.test(name) ? 'premium-league' : 'sport';
   }
-  if (category === 'concerts' || category === 'theatre') return 'entertainment';
+  if (category === 'concerts' || category === 'theatre' || category === 'comedy') return 'entertainment';
   return null;
 }
 

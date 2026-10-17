@@ -44,6 +44,17 @@ export const FEE_MODELS = {
     taxLabel: 'GST at 22 Sep 2025 rates',
     feeTaxPct: GST_ON_FEES_RATE,
   },
+  // BookMyShow: listed ticket prices already include GST; the convenience fee
+  // (plus 18% GST on it) is added at checkout. The 10% is a placeholder.
+  bookmyshow: {
+    label: 'typical BookMyShow convenience fee, rough estimate',
+    perTicketPct: 0.1,
+    perTicketFixed: 0,
+    perOrderFixed: 0,
+    taxPct: gstAdmissionRate,
+    taxLabel: 'GST on the convenience fee',
+    feeTaxPct: GST_ON_FEES_RATE,
+  },
 };
 
 export function getFeeModel(source) {

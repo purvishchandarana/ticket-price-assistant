@@ -50,15 +50,16 @@ export class TicketmasterProvider extends Provider {
     return Boolean(this.#apiKey);
   }
 
-  async search({ category, keyword, qty = 1 }, { size = 20 } = {}) {
+  async search({ category, keyword, qty = 1, city }, { size = 20 } = {}) {
     const params = {
       keyword,
-      segmentId: TM_SEGMENTS[category],
+      segmentId: category ? TM_SEGMENTS[category] : undefined,
       size: String(size),
       sort: 'relevance,desc',
       startDateTime: isoMinute(this.now()),
     };
     if (this.countryCode) params.countryCode = this.countryCode;
+    if (city) params.city = city;
 
     const data = await this.#get('/events.json', params);
     const events = data?._embedded?.events ?? [];

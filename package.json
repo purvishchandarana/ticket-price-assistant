@@ -22,13 +22,19 @@
     "url": "https://github.com/purvishchandarana/ticket-price-assistant/issues"
   },
   "workspaces": [
-    "server"
+    "server",
+    "client",
+    "demo-site"
   ],
   "engines": {
-    "node": ">=22.9"
+    "node": ">=22.13"
   },
   "scripts": {
+    "dev": "node scripts/dev.mjs",
     "dev:server": "npm run dev -w server",
+    "dev:client": "npm run dev -w client",
+    "demo-site": "npm start -w demo-site",
+    "build": "npm run build -w client",
     "start": "npm start -w server",
     "test": "npm test -w server"
   }

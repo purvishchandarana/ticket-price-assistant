@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    image: ticket-price-assistant
+    env_file: .env
+    environment:
+      HOST: 0.0.0.0
+      DB_FILE: /app/data/ticket-assistant.db
+    ports:
+      # Published on loopback only: the API is for this machine.
+      - "127.0.0.1:3001:3001"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

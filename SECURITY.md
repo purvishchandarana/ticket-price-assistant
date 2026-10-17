@@ -17,13 +17,17 @@ You can expect an acknowledgement within 7 days.
 
 ## Security model
 
-Keep these in mind when running or contributing:
+The server can drive your browser, so it is locked to your machine:
 
-- **The API binds to `127.0.0.1`.** It will control your browser from step 3
-  onward, so don't expose it on a network interface or behind a public proxy.
+- **Loopback only.** The API binds to `127.0.0.1` and rejects requests whose
+  `Host` header isn't a loopback name, which blocks DNS-rebinding attacks.
+- **Same-app origins only.** State-changing requests and WebSocket
+  connections from other websites' origins are rejected, so a page you visit
+  can't start sessions or read the live view through your browser.
 - **Chrome remote debugging (port 9222) grants full control of that browser.**
   Use a dedicated `--user-data-dir`, keep the port on localhost, and close
   that Chrome when you're done.
+- **No payment data.** Payment and checkout pages stop all automation; their
+  content is never read, stored, or streamed to the live view.
 - **Secrets stay in `.env`**, which is git-ignored. API keys are redacted from
   logged and returned URLs.
-- **No payment data** is ever entered, stored or read by this software.

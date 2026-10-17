@@ -28,3 +28,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      - run: npm run build
+
+  docker:
+    name: Docker build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: docker build -t ticket-price-assistant .

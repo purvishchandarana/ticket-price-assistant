@@ -1,8 +1,12 @@
-// Polite JSON HTTP client: per-host throttling, bounded retries on 429/5xx
+// Polite HTTP client: per-host throttling, bounded retries on 429/5xx
 // (honouring Retry-After), request timeouts, and secret redaction in errors.
 
 const SECRET_PARAMS = ['apikey', 'api_key', 'client_id', 'client_secret', 'token', 'access_token'];
 const MAX_RETRY_AFTER_MS = 30_000;
+
+export const USER_AGENT_TOKEN = 'TicketPriceAssistant';
+export const DEFAULT_USER_AGENT =
+  `${USER_AGENT_TOKEN}/0.2 (+https://github.com/purvishchandarana/ticket-price-assistant)`;
 
 export class HttpError extends Error {
   constructor(message, { status, url, body } = {}) {
@@ -40,8 +44,8 @@ const defaultSleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 export function createHttpClient({
   minIntervalMs = 500,
   maxRetries = 2,
-  timeoutMs = 10_000,
-  userAgent = 'TicketPriceAssistant/0.1 (personal use)',
+  timeoutMs = 15_000,
+  userAgent = DEFAULT_USER_AGENT,
   fetchImpl = globalThis.fetch,
   sleep = defaultSleep,
 } = {}) {
@@ -57,7 +61,7 @@ export function createHttpClient({
 
   const backoff = (attempt) => 500 * 2 ** attempt + Math.floor(Math.random() * 250);
 
-  async function getJson(url, { headers = {} } = {}) {
+  async function request(url, { headers = {}, accept, parse }) {
     const host = new URL(url).host;
     const safeUrl = redactUrl(url);
 
@@ -67,7 +71,7 @@ export function createHttpClient({
       let res;
       try {
         res = await fetchImpl(url, {
-          headers: { accept: 'application/json', 'user-agent': userAgent, ...headers },
+          headers: { accept, 'user-agent': userAgent, ...headers },
           signal: AbortSignal.timeout(timeoutMs),
         });
       } catch (err) {
@@ -78,7 +82,7 @@ export function createHttpClient({
         throw new HttpError(`Network error contacting ${host}: ${err.message}`, { status: 0, url: safeUrl });
       }
 
-      if (res.ok) return res.json();
+      if (res.ok) return parse(res);
 
       const retryable = res.status === 429 || res.status >= 500;
       if (retryable && attempt < maxRetries) {
@@ -95,5 +99,10 @@ export function createHttpClient({
     }
   }
 
-  return { getJson };
+  return {
+    getJson: (url, { headers } = {}) =>
+      request(url, { headers, accept: 'application/json', parse: (res) => res.json() }),
+    getText: (url, { headers } = {}) =>
+      request(url, { headers, accept: 'text/html,application/xml;q=0.9,*/*;q=0.8', parse: (res) => res.text() }),
+  };
 }
