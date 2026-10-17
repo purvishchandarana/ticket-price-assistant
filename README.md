@@ -125,7 +125,7 @@ google-chrome --remote-debugging-port=9222 --user-data-dir="$HOME/.chrome-ticket
 
 | Source | Access | Booking assist |
 |---|---|---|
-| **District** (district.in) | No public API. Discovery: District's own site search, run in your Chrome (falls back to the published sitemap without Chrome). Prices: public event pages (robots.txt-allowed) fetched by the server; schema.org event data plus each tier's convenience-fee % and GST from the page. | Open & watch |
+| **District** (district.in) | No public API. Discovery: District's own site search, run in your Chrome (falls back to the published sitemap without Chrome). Prices: public event pages (robots.txt-allowed) fetched by the server; schema.org event data plus each tier's convenience-fee % and GST from the page. | Pre-fill: date, show, cheapest stand & ticket type, quantity |
 | **BookMyShow** | No public API, and it only serves real browsers, so it is read in your Chrome: one call to its own search, then a few event pages' schema.org data. Listed prices include GST; the convenience fee is estimated. If BookMyShow blocks the browser, the source reports it and stops. | Open & watch |
 | **Ticketmaster** | Official Discovery API (key required). Little Indian inventory. | Open & watch |
 | **DemoTix** (local) | Bundled demo site | Full pre-fill demo |
@@ -133,6 +133,9 @@ google-chrome --remote-debugging-port=9222 --user-data-dir="$HOME/.chrome-ticket
 **Open & watch** opens the event in your Chrome and watches for queues,
 checks and checkout without clicking or typing anything on the site. Full
 pre-fill needs a site adapter with known selectors; see [Extending](#extending).
+District's adapter picks the cheapest available stand and ticket type (within
+your max price) and sets the quantity, then hands over: you review it, click
+**Add to cart** and continue. It never adds to the cart or touches payment.
 
 ## How prices are normalized
 

@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **District booking pre-fill past the zone map**: after the date and show, the
+  adapter picks the cheapest stand (via District's price filter), the cheapest
+  available ticket type within the max price, and sets the quantity. It hands
+  over before "Add to cart". Selectors verified on the live site.
 - **BookMyShow** source, read through a helper tab in the user's own Chrome
   (BookMyShow only serves real browsers): its own search plus event-page
   schema.org data; GST-inclusive prices with an estimated convenience fee.

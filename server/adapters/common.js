@@ -6,7 +6,9 @@
 //   prepare(page, {event, qty, filters}, ctx)
 //       Navigate and pre-fill using ctx.step(id, label, fn) and
 //       ctx.waitFor(id, label, predicate). Steps are skipped on resume once done.
-//       MUST stop before seat selection and never touch payment fields.
+//       May pick a stand / ticket type and quantity only with selectors verified
+//       on the live site; MUST stop before adding to cart and never touch
+//       payment fields.
 //   isAtPayment(page) -> Promise<boolean>
 //   isPaymentUrl(url) -> boolean   optional fast check used to stop instantly
 //   handoffMessage                 optional text shown when it's the user's turn

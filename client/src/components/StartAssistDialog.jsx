@@ -41,7 +41,7 @@ export default function StartAssistDialog({ event, qty: initialQty, onClose }) {
           {fullPrefill
             ? 'Opens the event in your Chrome, sets quantity and filters, and pauses for queues or checks. You pick seats and pay.'
             : event.source === 'district'
-              ? 'Opens the event in your Chrome, clicks "Book tickets" and picks this date and show. Then it\'s your turn: choose the stand / ticket type and quantity and continue to checkout. It stops at payment.'
+              ? 'Opens the event in your Chrome, picks this date and show, then the cheapest stand and ticket type (within your max price) and sets the quantity. Then it\'s your turn: check it, click "Add to cart" and continue. It stops at payment.'
               : `"Open & watch" mode for ${event.sourceName}: opens the event in your Chrome and watches for queues and checkout. It doesn't click or type on the site. You choose tickets and pay.`}
         </div>
 
@@ -51,7 +51,7 @@ export default function StartAssistDialog({ event, qty: initialQty, onClose }) {
               {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => <option key={n}>{n}</option>)}
             </select>
           </label>
-          {fullPrefill && (
+          {(fullPrefill || event.source === 'district') && (
             <label className="text-sm font-medium">Max price / ticket (₹)
               <input className="field mt-1" type="number" min="1" placeholder="Any" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} />
             </label>
